@@ -1,0 +1,15 @@
+version: '2'
+
+volumes:
+  postgres-data:
+
+services:
+  postgres:
+    image: postgres:9
+    volumes:
+      - 'postgres-data:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_USER: divisas
+      POSTGRES_PASSWORD: divisas
+    ports:
+      - '5432:5432'
