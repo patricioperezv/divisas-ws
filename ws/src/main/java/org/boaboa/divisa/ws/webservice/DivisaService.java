@@ -7,12 +7,17 @@ import org.boaboa.divisa.domain.Respuesta;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pperez on 15-04-16.
  */
 @WebService
 public interface DivisaService {
+
+    List<Cambio> consultarCambios();
+
+    List<Divisa> consultarDivisas();
 
     Divisa consultarDivisa(@WebParam(name = "iso") String iso);
 
@@ -28,5 +33,4 @@ public interface DivisaService {
 
     Respuesta eliminarCambio(@WebParam(name = "divisa1") String iso1, @WebParam(name = "divisa2") String iso2, @WebParam(name = "fecha") Date fecha);
 
-    // TODO: Agregar funciones de eliminar y actualizar cambios y divisas
 }

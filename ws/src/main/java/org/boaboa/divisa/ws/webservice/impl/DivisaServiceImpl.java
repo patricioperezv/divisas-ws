@@ -14,7 +14,9 @@ import javax.inject.Inject;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pperez on 15-04-16.
@@ -180,5 +182,31 @@ public class DivisaServiceImpl implements Serializable, DivisaService {
             logger.debug("Error al eliminar cambio: {}", e.toString(), e);
         }
         return respuesta;
+    }
+
+    @Override
+    public List<Cambio> consultarCambios() {
+        List<Cambio> cambios = new ArrayList<>();
+        try {
+            cambios = this.servicioDivisa.consultarCambios();
+        } catch (Exception e) {
+            cambios = new ArrayList<>();
+            logger.error("Error al consultar cambios: {}", e.toString());
+            logger.debug("Error al consultar cambios: {}", e.toString(), e);
+        }
+        return cambios;
+    }
+
+    @Override
+    public List<Divisa> consultarDivisas() {
+        List<Divisa> divisas = new ArrayList<>();
+        try {
+            divisas = this.servicioDivisa.consultarDivisas();
+        } catch (Exception e) {
+            divisas = new ArrayList<>();
+            logger.error("Error al consultar divisas: {}", e.toString());
+            logger.debug("Error al consultar divisas: {}", e.toString(), e);
+        }
+        return divisas;
     }
 }

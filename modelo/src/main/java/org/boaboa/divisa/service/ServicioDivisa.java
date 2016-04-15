@@ -4,11 +4,16 @@ import org.boaboa.divisa.domain.Cambio;
 import org.boaboa.divisa.domain.Divisa;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pperez on 14-04-16.
  */
 public interface ServicioDivisa {
+
+    List<Divisa> consultarDivisas();
+
+    List<Cambio> consultarCambios();
 
     Divisa consultarDivisa(Long id);
 

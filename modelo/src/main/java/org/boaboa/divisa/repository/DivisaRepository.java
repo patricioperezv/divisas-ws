@@ -12,7 +12,7 @@ public interface DivisaRepository extends JpaRepository<Divisa, Long> {
 
     Divisa findByNombre(String nombre);
 
-    Divisa findByIso(String iso);
+    Divisa findByIsoIgnoreCase(String iso);
 
     List<Divisa> findAllByOrderByIsoAsc();
 }

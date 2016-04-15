@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pperez on 14-04-16.
@@ -27,6 +29,19 @@ public class ServicioDivisaImpl implements Serializable, ServicioDivisa {
     private DivisaRepository divisaRepository;
     @Inject
     private CambioRepository cambioRepository;
+
+    @Override
+    public List<Divisa> consultarDivisas() {
+        List<Divisa> divisas = new ArrayList<>();
+        try {
+            divisas = this.divisaRepository.findAllByOrderByIsoAsc();
+        } catch (Exception e) {
+            divisas = new ArrayList<>();
+            logger.error("Error al consultar divisas: {}", e.toString());
+            logger.debug("Error al consultar divisas: {}", e.toString(), e);
+        }
+        return divisas;
+    }
 
     @Override
     public Divisa consultarDivisa(Long id) {
@@ -48,7 +63,7 @@ public class ServicioDivisaImpl implements Serializable, ServicioDivisa {
         Divisa divisa = null;
         try {
             if (StringUtils.isNoneBlank(iso)) {
-                divisa = this.divisaRepository.findByIso(iso);
+                divisa = this.divisaRepository.findByIsoIgnoreCase(iso);
             }
         } catch (Exception e) {
             divisa = null;
@@ -175,5 +190,18 @@ public class ServicioDivisaImpl implements Serializable, ServicioDivisa {
             logger.debug("Error al eliminar cambio: {}", e.toString(), e, cambio);
         }
         return resultado;
+    }
+
+    @Override
+    public List<Cambio> consultarCambios() {
+        List<Cambio> cambios = new ArrayList<>();
+        try {
+            cambios = this.cambioRepository.findAllByOrderByFechaAscDivisa1IsoAscDivisa2IsoAsc();
+        } catch (Exception e) {
+            cambios = new ArrayList<>();
+            logger.error("Error al consultar cambios: {}", e.toString());
+            logger.debug("Error al consultar cambios: {}", e.toString(), e);
+        }
+        return cambios;
     }
 }
