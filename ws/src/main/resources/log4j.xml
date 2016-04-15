@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="ROOT_APPENDER_DIVISAS_INT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <param name="File" value="${path.logs}${file.separator}boadivisas${file.separator}ws${file.separator}boadivisas_ws.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; {%C->%M} %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="ERROR_APPENDER_DIVISAS_INT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <param name="File" value="${path.logs}${file.separator}boadivisas${file.separator}ws${file.separator}error.log" />
+        <param name="threshold" value="error" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd/MM/yyyy HH:mm:ss,SSS}] {%C->%M} %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="DEBUG_APPENDER_DIVISAS_INT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" /> 
+        <param name="File" value="${path.logs}${file.separator}boadivisas${file.separator}ws${file.separator}debug.log" />
+        <param name="threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; {%C->%M} %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="INFO_APPENDER_DIVISAS_INT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="false" />
+        <param name="File" value="${path.logs}${file.separator}boadivisas${file.separator}ws${file.separator}info.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="info" />
+            <param name="LevelMax" value="warn" />
+        </filter>
+    </appender>
+    
+    <appender name="CXF_APPENDER_DIVISAS" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <param name="File" value="${path.logs}${file.separator}boadivisas${file.separator}ws${file.separator}cxf.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="info" />
+            <param name="LevelMax" value="debug" />
+        </filter>
+    </appender>
+
+    <!--
+    <logger name="org.apache.cxf">
+        <level value="DEBUG" />
+        <appender-ref ref="CXF_APPENDER_DIVISAS" />
+    </logger>
+    -->
+
+    <logger name="org.boaboa.divisa">
+        <level value="INFO" />
+        <appender-ref ref="INFO_APPENDER_DIVISAS_INT" />
+        <appender-ref ref="ERROR_APPENDER_DIVISAS_INT" />
+        <appender-ref ref="DEBUG_APPENDER_DIVISAS_INT" />
+    </logger>
+
+
+    <root>
+        <!-- Debería cambiarse por FATAL en producción. -->
+        <level value="INFO" />
+        <appender-ref ref="ROOT_APPENDER_DIVISAS_INT" />
+    </root>
+
+</log4j:configuration>
