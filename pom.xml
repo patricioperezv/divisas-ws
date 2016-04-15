@@ -9,9 +9,7 @@
     <name>divisa</name>
     <modules>
         <module>modelo</module>
-        <!-- <module>web</module> -->
-        <!-- <module>integrador</module> -->
-        <!-- <module>rest</module> -->
+        <module>ws</module>
     </modules>
 
     <parent>
