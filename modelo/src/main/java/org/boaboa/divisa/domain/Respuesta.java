@@ -6,7 +6,7 @@ package org.boaboa.divisa.domain;
 public class Respuesta extends BaseBean {
     private static final long serialVersionUID = 5152521570683753318L;
 
-    private boolean estado;
+    private boolean estado = false;
 
     private String mensaje;
 

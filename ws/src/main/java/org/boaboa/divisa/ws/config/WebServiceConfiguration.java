@@ -18,19 +18,21 @@ import javax.inject.Inject;
  */
 @Configuration
 @PropertySource("classpath:divisas-ws.properties")
+@PropertySource(value = "file:${user.home}${file.separator}.boasalas${file.separator}boasalas.properties", ignoreResourceNotFound = true)
 public class WebServiceConfiguration {
 
     @Inject
     private DivisaService divisaService;
 
     @Bean
-    public SpringBus bus() {
+    public SpringBus cxf() {
         return new SpringBus();
     }
 
     @Bean
     public Endpoint endpoint() {
-        EndpointImpl endpoint = new EndpointImpl(bus(), divisaService);
+        EndpointImpl endpoint = new EndpointImpl(cxf(), divisaService);
+        endpoint.setAddress("/divisas");
         endpoint.publish();
         return endpoint;
     }
