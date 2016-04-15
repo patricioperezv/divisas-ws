@@ -8,6 +8,7 @@ import org.boaboa.divisa.repository.DivisaRepository;
 import org.boaboa.divisa.service.ServicioDivisa;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,6 +18,7 @@ import java.util.Date;
 /**
  * Created by pperez on 14-04-16.
  */
+@Service
 public class ServicioDivisaImpl implements Serializable, ServicioDivisa {
     private static final long serialVersionUID = 9152239317111653703L;
     private static final Logger logger = LoggerFactory.getLogger(ServicioDivisaImpl.class);
