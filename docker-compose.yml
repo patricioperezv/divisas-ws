@@ -20,3 +20,5 @@ tomcat:
     - postgres
   env_file:
     - ./tomcat.env
+  expose:
+    - "8080"
