@@ -18,7 +18,7 @@ import javax.inject.Inject;
  */
 @Configuration
 @PropertySource("classpath:divisas-ws.properties")
-@PropertySource(value = "file:${user.home}${file.separator}.boasalas${file.separator}boasalas.properties", ignoreResourceNotFound = true)
+@PropertySource(value = "file:${user.home}${file.separator}.boadivisas${file.separator}boadivisas.properties", ignoreResourceNotFound = false)
 public class WebServiceConfiguration {
 
     @Inject
